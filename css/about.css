@@ -1,0 +1,403 @@
+/* About Us Section Styles */
+.about-section {
+    position: relative;
+    min-height: 100vh;   /* 👈 will fill screen but expand if needed */
+    height: auto;        /* allow content to stretch beyond */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* stack content naturally */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: none;    /* remove dark gradient here */
+}
+
+.about-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/images/sections/about.png') no-repeat center center; background-size: cover;
+    z-index: 1;
+    object-fit: cover;
+    will-change: transform;
+}
+
+.about-overlay {
+    display: none;   /* remove the dark overlay */
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl, 48px);
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.about-header {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+.about-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 300;
+    color: #FFB800;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(255, 184, 0, 0.3);
+}
+
+.about-subtitle {
+    font-size: 20px;
+    color: #f0ed49;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.about-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  padding: 2rem;
+  text-align: center; 
+}
+
+.about-point {
+    text-align: left;
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+    will-change: transform, opacity;
+}
+
+.about-point-number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFB800;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.about-point-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.about-point-description {
+    color: #f0ed49;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.about-point-description p {
+    margin-bottom: 12px;
+}
+
+.about-point-description p:last-child {
+    margin-bottom: 0;
+}
+
+.about-section p:last-of-type {
+    margin-bottom: 40px; /* or padding if you prefer */
+}
+
+/* Full-width centered section at bottom */
+.about-mission {
+    margin-top: 120px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.about-mission-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #D0D0D0;
+    font-weight: 300;
+}
+
+/* Enhanced animations */
+@keyframes aboutFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.95);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(-10px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes aboutSlideInStagger {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9) rotateX(10deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-15px) scale(1.05) rotateX(-2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+    }
+}
+
+@keyframes aboutMissionReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+/* Visible states with animations */
+.about-header.animate-in {
+    animation: aboutFadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.about-point.animate-in {
+    animation: aboutSlideInStagger 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.about-point:nth-child(1).animate-in {
+    animation-delay: 0.2s;
+}
+
+.about-point:nth-child(2).animate-in {
+    animation-delay: 0.4s;
+}
+
+.about-point:nth-child(3).animate-in {
+    animation-delay: 0.6s;
+}
+
+.about-mission.animate-in {
+    animation: aboutMissionReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+/* Hover effects */
+.about-point {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.about-point:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.about-point-title {
+    transition: color 0.3s ease;
+}
+
+.about-point:hover .about-point-title {
+    color: #FFB800;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        margin-top: 80px;
+    }
+    
+    .about-point {
+        text-align: center;
+    }
+    
+    .about-mission {
+        margin-top: 80px;
+    }
+    
+    .about-point-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-container {
+        padding: 0 24px;
+    }
+    
+    .about-header {
+        margin-bottom: 60px;
+    }
+    
+    .about-title {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+    
+    .about-subtitle {
+        font-size: 18px;
+    }
+    
+    .about-content {
+        gap: 40px;
+        margin-top: 60px;
+    }
+    
+    .about-point-title {
+        font-size: 1.3rem;
+    }
+    
+    .about-point-description {
+        font-size: 15px;
+    }
+    
+    .about-mission {
+        margin-top: 60px;
+    }
+    
+    .about-mission-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 575px) {
+    .about-container {
+        padding: 0 16px;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .about-point-number {
+        font-size: 1.2rem;
+    }
+    
+    .about-point-title {
+        font-size: 1.2rem;
+    }
+    
+    .about-point-description {
+        font-size: 14px;
+    }
+    
+    .about-mission-text {
+        font-size: 15px;
+    }
+}
+
+/* Performance optimizations */
+.about-point,
+.about-header,
+.about-mission,
+.about-background {
+    will-change: transform, opacity;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .about-header.animate-in,
+    .about-point.animate-in,
+    .about-mission.animate-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .about-point:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .about-overlay {
+        background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+    }
+}
+
+/* Print styles */
+@media print {
+    .about-section {
+        background: white !important;
+        color: black !important;
+        min-height: auto;
+        page-break-after: always;
+    }
+    
+    .about-background,
+    .about-overlay {
+        display: none !important;
+    }
+    
+    .about-title,
+    .about-point-number,
+    .about-point-title {
+        color: black !important;
+    }
+    
+    .about-subtitle,
+    .about-point-description,
+    .about-mission-text {
+        color: #333 !important;
+    }
+}
+
+/* Custom CSS Variables */
+:root {
+    --primary-yellow: #FFB800;
+    --dark-bg: #2C2C2C;
+    --darker-bg: #1A1A1A;
+    --light-text: #FFFFFF;
+    --secondary-text: #B8B8B8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --gradient-bg: linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%);
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-xxl: 64px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-bounce: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--dark-bg);
+    color: var(--light-text);
+    overflow-x: hidden;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
